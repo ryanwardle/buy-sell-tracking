@@ -1,0 +1,18 @@
+mat-card{
+  width: 70%;
+  margin: 4rem auto;
+
+  form{
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field{
+      margin: .5rem 0;
+    }
+
+    button{
+      width: 50%;
+      margin: .5rem auto;
+    }
+  }
+}

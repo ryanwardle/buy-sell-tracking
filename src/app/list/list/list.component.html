@@ -1,0 +1,35 @@
+<mat-card>
+  <form [formGroup]="form" (submit)="onSaveItem()" color="primary">
+    <mat-form-field class="date-picker">
+      <input matInput [matDatepicker]="picker" formControlName="date" name="date" placeholder="Purchase date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput formControlName="description" name="description" cols="30" rows="5" placeholder="Item description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="cost" name="cost" type="text" placeholder="Item cost">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="retail" name="retail" type="text" placeholder="Item retail">
+    </mat-form-field>
+
+    <mat-form-field class="date-picker">
+      <input matInput [matDatepicker]="pickerSold" formControlName="soldDate" name="soldDate" placeholder="Sold date">
+      <mat-datepicker-toggle matSuffix [for]="pickerSold"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #pickerSold></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="soldPrice" name="soldPrice" type="text" placeholder="Sold price" [disabled]="true">
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+</mat-card>
+

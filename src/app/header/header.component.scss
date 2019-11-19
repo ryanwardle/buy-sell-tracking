@@ -1,0 +1,16 @@
+mat-toolbar{
+
+  ul{
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+
+    li{
+      margin-right: 3rem;
+
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
