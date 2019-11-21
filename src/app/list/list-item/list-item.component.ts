@@ -32,7 +32,9 @@ export class ListItemComponent implements OnInit {
       date: new FormControl(this.form.controls.date.value),
       description: new FormControl(this.form.controls.description.value),
       cost: new FormControl(this.form.controls.cost.value),
-      retail: new FormControl(this.form.controls.retail.value)
+      retail: new FormControl(this.form.controls.retail.value),
+      soldDate: new FormControl(null),
+      soldPrice: new FormControl(null)
     });
 
     console.log(this.form.value);

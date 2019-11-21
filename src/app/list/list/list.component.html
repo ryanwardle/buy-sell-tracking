@@ -1,21 +1,27 @@
-<mat-card>
+
+
+
+<!-- THIS FOR SHOULD BE FOR EDIT MODE, WILL HAVE TO ADJUST THE VALUE MAYBE BECAUSE USES NGFOR TO LOOP THROUGH ALL ITEMS,
+AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
+
+<!-- <mat-card *ngFor="let item of items">
   <form [formGroup]="form" (submit)="onSaveItem()" color="primary">
     <mat-form-field class="date-picker">
-      <input matInput [matDatepicker]="picker" formControlName="date" name="date" placeholder="Purchase date">
+      <input matInput [matDatepicker]="picker" formControlName="date" name="date" [value]="item.date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput formControlName="description" name="description" cols="30" rows="5" placeholder="Item description"></textarea>
+      <textarea matInput formControlName="description" name="description" cols="30" rows="5" [value]="item.description"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="cost" name="cost" type="text" placeholder="Item cost">
+      <input matInput formControlName="cost" name="cost" type="text" [value]="item.cost">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="retail" name="retail" type="text" placeholder="Item retail">
+      <input matInput formControlName="retail" name="retail" type="text" [value]="item.retail">
     </mat-form-field>
 
     <mat-form-field class="date-picker">
@@ -31,5 +37,59 @@
 
     <button mat-raised-button color="primary" type="submit">Save</button>
   </form>
-</mat-card>
+</mat-card> -->
 
+<mat-card *ngFor="let item of items" >
+  <div class="">
+    <h2>
+      Date
+    </h2>
+    <p>
+      {{ item.date }}
+    </p>
+  </div>
+  <div class="">
+    <h2>
+      Description
+    </h2>
+    <p>
+      {{ item.description }}
+    </p>
+  </div>
+  <div class="">
+    <h2>
+      Cost
+    </h2>
+    <p>
+      {{ item.cost }}
+    </p>
+  </div>
+  <div class="">
+    <h2>
+      Retail
+    </h2>
+    <p>
+      {{ item.retail }}
+    </p>
+  </div>
+  <div class="">
+    <h2>
+      Sold Date
+    </h2>
+    <p>
+      {{ item.soldDate.getMonth() }}
+    </p>
+  </div>
+  <div class="">
+    <h2>
+      Sold Price
+    </h2>
+    <p>
+      {{ item.soldPrice }}
+    </p>
+  </div>
+  <div class="buttons">
+    <button mat-button>Edit</button>
+    <button mat-button color="mat-warn">Delete</button>
+  </div>
+</mat-card>

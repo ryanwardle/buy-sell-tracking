@@ -1,4 +1,33 @@
+// mat-toolbar{
+
+//   ul{
+//     display: flex;
+//     list-style: none;
+//     margin-left: auto;
+
+//     li{
+//       margin-right: 3rem;
+
+//       a{
+//         text-decoration: none;
+//       }
+//     }
+//   }
+// }
+
 mat-toolbar{
+
+  .home{
+
+    a{
+      color: white;
+      font-size: 2rem;
+    }
+  }
+
+  a{
+    text-decoration: none;
+  }
 
   ul{
     display: flex;
@@ -6,11 +35,7 @@ mat-toolbar{
     margin-left: auto;
 
     li{
-      margin-right: 3rem;
-
-      a{
-        text-decoration: none;
-      }
+      margin: 0 1rem;
     }
   }
 }

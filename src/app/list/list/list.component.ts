@@ -10,6 +10,7 @@ import { ListService } from '../list.service';
 export class ListComponent implements OnInit {
 
   form: FormGroup;
+  items = [];
 
   constructor(private listService: ListService) {
 
@@ -17,11 +18,15 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
 
+    this.items = this.listService.getItems();
+
     this.form = new FormGroup({
       date: new FormControl(null),
       description: new FormControl(null),
       cost: new FormControl(null),
-      retail: new FormControl(null)
+      retail: new FormControl(null),
+      soldDate: new FormControl(null),
+      soldPrice: new FormControl(null)
     });
   }
 
@@ -30,7 +35,9 @@ export class ListComponent implements OnInit {
       date: new FormControl(this.form.controls.date.value),
       description: new FormControl(this.form.controls.description.value),
       cost: new FormControl(this.form.controls.cost.value),
-      retail: new FormControl(this.form.controls.retail.value)
+      retail: new FormControl(this.form.controls.retail.value),
+      soldDate: new FormControl(this.form.controls.soldDate.value),
+      soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
 
     console.log(this.form.value);
