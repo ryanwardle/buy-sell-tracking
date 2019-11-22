@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ListService } from '../list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-item',
@@ -11,7 +12,8 @@ export class ListItemComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private listService: ListService) {
+  constructor(private listService: ListService,
+              private router: Router) {
 
   }
 
@@ -33,14 +35,15 @@ export class ListItemComponent implements OnInit {
       description: new FormControl(this.form.controls.description.value),
       cost: new FormControl(this.form.controls.cost.value),
       retail: new FormControl(this.form.controls.retail.value),
-      soldDate: new FormControl(null),
-      soldPrice: new FormControl(null)
+      soldDate: new FormControl(this.form.controls.soldDate.value),
+      soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
 
     console.log(this.form.value);
 
     this.listService.addItem(this.form.value);
     this.form.reset();
+    this.router.navigate(['/item-list']);
   }
 
 }

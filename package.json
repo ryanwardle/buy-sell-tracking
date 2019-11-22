@@ -24,6 +24,7 @@
     "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
+    "typeface-libre-baskerville": "0.0.72",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

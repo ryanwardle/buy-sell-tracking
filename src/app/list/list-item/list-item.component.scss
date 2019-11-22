@@ -6,6 +6,18 @@ mat-card{
     display: flex;
     flex-direction: column;
 
+    .dates{
+      display: flex;
+
+      :first-child{
+        margin-right: auto;
+      }
+
+      mat-form-field{
+        flex-basis: 40%;
+      }
+    }
+
     mat-form-field{
       margin: .5rem 0;
     }
