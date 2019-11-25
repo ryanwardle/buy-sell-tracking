@@ -30,6 +30,7 @@ export class ListItemComponent implements OnInit {
   }
 
   onSubmitItem(form: FormGroup) {
+
     this.form = new FormGroup({
       date: new FormControl(this.form.controls.date.value),
       description: new FormControl(this.form.controls.description.value),

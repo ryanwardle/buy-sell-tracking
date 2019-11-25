@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+*{
+  font-family: 'Baskervville' , serif !important;
+}
+
 html,
 body {
   font-size: 62.5%;
@@ -10,6 +14,4 @@ body {
   font-size: 1.6rem;
   box-sizing: border-box;
   margin: 0;
-  // font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-family: 'Baskervville', serif;
   }

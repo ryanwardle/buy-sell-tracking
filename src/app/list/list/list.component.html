@@ -45,7 +45,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
       Date
     </h2>
     <p>
-      {{ item.date }}
+      {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
     </p>
   </div>
   <div class="">
