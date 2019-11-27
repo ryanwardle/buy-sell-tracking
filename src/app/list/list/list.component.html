@@ -39,51 +39,51 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
   </form>
 </mat-card> -->
 
-<mat-card *ngFor="let item of items" >
-  <div class="">
-    <h2>
+<mat-card *ngFor="let item of items">
+  <div>
+    <mat-card-header>
       Date
-    </h2>
+    </mat-card-header>
     <p>
       {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
     </p>
   </div>
-  <div class="">
-    <h2>
+  <div>
+    <mat-card-header>
       Description
-    </h2>
+    </mat-card-header>
     <p>
       {{ item.description }}
     </p>
   </div>
-  <div class="">
-    <h2>
+  <div>
+    <mat-card-header>
       Cost
-    </h2>
+    </mat-card-header>
     <p>
       {{ item.cost }}
     </p>
   </div>
-  <div class="">
-    <h2>
+  <div>
+    <mat-card-header>
       Retail
-    </h2>
+    </mat-card-header>
     <p>
       {{ item.retail }}
     </p>
   </div>
-  <div class="">
-    <h2>
+  <div>
+    <mat-card-header>
       Sold Date
-    </h2>
+    </mat-card-header>
     <p>
-      {{ item.soldDate }}
+      {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
     </p>
   </div>
-  <div class="">
-    <h2>
+  <div>
+    <mat-card-header>
       Sold Price
-    </h2>
+    </mat-card-header>
     <p>
       {{ item.soldPrice }}
     </p>
