@@ -30,6 +30,11 @@ export class ListComponent implements OnInit {
     // });
   }
 
+  getColor(price: number, soldPrice: number) {
+    if ( soldPrice === null) {return {'background-color': `accent`};  }
+    return price < soldPrice ? {'background-color': `primary`} : {'background-color': `warn`};
+  }
+
   // onSaveItem(form: FormGroup) {
   //   this.form = new FormGroup({
   //     date: new FormControl(this.form.controls.date.value),
