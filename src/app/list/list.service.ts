@@ -6,11 +6,13 @@ export class ListService {
   items = [];
 
   getItems() {
+    console.log(this.items);
     return this.items;
   }
 
   addItem(item) {
-    this.items.push(item);
+    // Use unshift to display in order, push would put them in reverse order
+    this.items.unshift(item);
     console.log(this.items);
     return this.items;
   }

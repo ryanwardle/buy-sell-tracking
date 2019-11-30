@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
 
     this.items = this.listService.getItems();
+    console.log(this.items);
 
     // this.form = new FormGroup({
     //   date: new FormControl(null),
@@ -31,7 +32,7 @@ export class ListComponent implements OnInit {
   }
 
   getColor(price: number, soldPrice: number) {
-    if ( soldPrice === 0) {return 'accent'; }
+    if ( soldPrice.toString() === '') {return 'accent'; }
     return price < soldPrice ? 'primary' : 'warn';
   }
 

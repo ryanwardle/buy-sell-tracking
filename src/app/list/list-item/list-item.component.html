@@ -2,7 +2,7 @@
   <form [formGroup]="form" (submit)="onSubmitItem()" color="primary">
     <div class="dates">
       <mat-form-field class="date-picker">
-        <input matInput [matDatepicker]="picker" formControlName="date" name="date" placeholder="Purchase date">
+        <input matInput [matDatepicker]="picker" formControlName="date" name="date" placeholder="Purchase date" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
@@ -15,15 +15,15 @@
     </div>
 
     <mat-form-field>
-      <input matInput formControlName="cost" name="cost" type="text" placeholder="Item cost">
+      <input matInput formControlName="cost" name="cost" type="text" placeholder="Item cost" required>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="retail" name="retail" type="text" placeholder="Item retail">
+      <input matInput formControlName="retail" name="retail" type="text" placeholder="Item retail" required>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput formControlName="description" name="description" cols="30" rows="5" placeholder="Item description"></textarea>
+      <textarea matInput formControlName="description" name="description" cols="30" rows="5" placeholder="Item description" required></textarea>
     </mat-form-field>
 
     <mat-form-field>

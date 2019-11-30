@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListService } from '../list.service';
 import { Router } from '@angular/router';
 
@@ -20,16 +20,18 @@ export class ListItemComponent implements OnInit {
   ngOnInit() {
 
     this.form = new FormGroup({
-      date: new FormControl(null),
-      description: new FormControl(null),
-      cost: new FormControl(null),
-      retail: new FormControl(null),
+      date: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      cost: new FormControl(null, [Validators.required, Validators.min(0)]),
+      retail: new FormControl(null, Validators.required),
       soldDate: new FormControl(''),
       soldPrice: new FormControl('')
     });
   }
 
   onSubmitItem(form: FormGroup) {
+
+    if (this.form.invalid) {return; }
 
     this.form = new FormGroup({
       date: new FormControl(this.form.controls.date.value),
@@ -39,6 +41,15 @@ export class ListItemComponent implements OnInit {
       soldDate: new FormControl(this.form.controls.soldDate.value),
       soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
+
+    // this.form.setValue({
+    //   date: this.form.controls.date.value,
+    //   description: this.form.controls.description.value,
+    //   cost: this.form.controls.cost.value,
+    //   retail: this.form.controls.retail.value,
+    //   soldDate: this.form.controls.soldDate.value,
+    //   soldPrice: this.form.controls.soldPrice.value
+    // });
 
     console.log(this.form.value);
 

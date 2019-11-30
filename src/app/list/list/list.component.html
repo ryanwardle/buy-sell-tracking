@@ -76,17 +76,23 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
         <mat-card-header>
           Sold Date
         </mat-card-header>
-        <p>
+        <p *ngIf="item.soldDate else blankDate">
           {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
         </p>
+        <ng-template #blankDate>
+          <p></p>
+        </ng-template>
       </div>
       <div>
         <mat-card-header>
           Sold Price
         </mat-card-header>
-        <p>
+        <p  *ngIf="item.soldDate else blankDatePrice">
           {{ item.soldPrice }}
         </p>
+        <ng-template #blankDatePrice>
+            <p></p>
+          </ng-template>
       </div>
       <div class="buttons">
         <button mat-button color="primary">Edit</button>
