@@ -1,3 +1,5 @@
+// @import '~@angular/material/theming';
+
 mat-card{
   display: flex;
   justify-content: space-around;
@@ -9,6 +11,7 @@ mat-card{
 
     mat-card-header{
       font-size: 1.8rem;
+      flex-direction: column;
     }
   }
 

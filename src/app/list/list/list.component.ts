@@ -31,8 +31,8 @@ export class ListComponent implements OnInit {
   }
 
   getColor(price: number, soldPrice: number) {
-    if ( soldPrice === null) {return {'background-color': `accent`};  }
-    return price < soldPrice ? {'background-color': `primary`} : {'background-color': `warn`};
+    if ( soldPrice === null) {return 'accent'; }
+    return price < soldPrice ? 'primary' : 'warn';
   }
 
   // onSaveItem(form: FormGroup) {

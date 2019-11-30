@@ -40,58 +40,57 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
 </mat-card> -->
 
 <!--  [ngStyle]="getColor(item.cost, item.soldDate)"}-->
-
-<mat-card *ngFor="let item of items">
-  <div>
-    <mat-card-header>
-      Date
-    </mat-card-header>
-    <p>
-      {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
-    </p>
-  </div>
-  <div>
-    <mat-card-header>
-      Description
-    </mat-card-header>
-    <p>
-      {{ item.description }}
-    </p>
-  </div>
-  <div>
-    <mat-card-header>
-      Cost
-    </mat-card-header>
-    <p>
-      {{ item.cost }}
-    </p>
-  </div>
-  <div>
-    <mat-card-header>
-      Retail
-    </mat-card-header>
-    <p>
-      {{ item.retail }}
-    </p>
-  </div>
-  <div>
-    <mat-card-header>
-      Sold Date
-    </mat-card-header>
-    <p>
-      {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
-    </p>
-  </div>
-  <div>
-    <mat-card-header>
-      Sold Price
-    </mat-card-header>
-    <p>
-      {{ item.soldPrice }}
-    </p>
-  </div>
-  <div class="buttons">
-    <button mat-button color="primary">Edit</button>
-    <button mat-button color="warn">Delete</button>
-  </div>
+<mat-card *ngFor="let item of items" color="primary">
+    <div>
+        <mat-card-header>
+          Date
+        </mat-card-header>
+        <p>
+          {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
+        </p>
+      </div>
+      <div>
+        <mat-card-header>
+          Description
+        </mat-card-header>
+        <p>
+          {{ item.description }}
+        </p>
+      </div>
+      <div>
+        <mat-card-header>
+          Cost
+        </mat-card-header>
+        <p>
+          {{ item.cost }}
+        </p>
+      </div>
+      <div>
+        <mat-card-header>
+          Retail
+        </mat-card-header>
+        <p>
+          {{ item.retail }}
+        </p>
+      </div>
+      <div>
+        <mat-card-header>
+          Sold Date
+        </mat-card-header>
+        <p>
+          {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
+        </p>
+      </div>
+      <div>
+        <mat-card-header>
+          Sold Price
+        </mat-card-header>
+        <p>
+          {{ item.soldPrice }}
+        </p>
+      </div>
+      <div class="buttons">
+        <button mat-button color="primary">Edit</button>
+        <button mat-button color="warn">Delete</button>
+      </div>
 </mat-card>
