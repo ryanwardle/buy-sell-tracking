@@ -39,8 +39,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
   </form>
 </mat-card> -->
 
-<!--  [ngStyle]="getColor(item.cost, item.soldDate)"}-->
-<mat-card *ngFor="let item of items" color="primary">
+<mat-card *ngFor="let item of items" [ngClass]="getColor(item.cost, item.soldPrice)">
     <div>
         <mat-card-header>
           Date

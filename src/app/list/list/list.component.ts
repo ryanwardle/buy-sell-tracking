@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
   }
 
   getColor(price: number, soldPrice: number) {
-    if ( soldPrice === null) {return 'accent'; }
+    if ( soldPrice === 0) {return 'accent'; }
     return price < soldPrice ? 'primary' : 'warn';
   }
 

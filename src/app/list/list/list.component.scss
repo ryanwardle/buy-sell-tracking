@@ -1,4 +1,18 @@
-// @import '~@angular/material/theming';
+// classes defined for styles that should be defined as variables in theme.scss, need to try to figure out
+
+.primary{
+    background-color: #A5D6A7;
+    color: #EEEEEE;
+}
+
+.accent{
+  background-color: #EEEEEE;
+}
+
+.warn{
+  background-color: #EF9A9A;
+  color: #EEEEEE;
+}
 
 mat-card{
   display: flex;
@@ -12,6 +26,7 @@ mat-card{
     mat-card-header{
       font-size: 1.8rem;
       flex-direction: column;
+      text-decoration: underline;
     }
   }
 

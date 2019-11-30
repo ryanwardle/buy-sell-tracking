@@ -24,8 +24,8 @@ export class ListItemComponent implements OnInit {
       description: new FormControl(null),
       cost: new FormControl(null),
       retail: new FormControl(null),
-      soldDate: new FormControl(null),
-      soldPrice: new FormControl(null)
+      soldDate: new FormControl(''),
+      soldPrice: new FormControl('')
     });
   }
 
