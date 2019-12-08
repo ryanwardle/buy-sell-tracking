@@ -11,6 +11,7 @@ export class ListComponent implements OnInit {
 
   form: FormGroup;
   items = [];
+  calculatedAmount: string;
 
   constructor(private listService: ListService) {
 
@@ -33,6 +34,13 @@ export class ListComponent implements OnInit {
 
   getColor(price: number, soldPrice: number) {
     if ( soldPrice.toString() === '') {return 'accent'; }
+    const amount = Math.abs(soldPrice - price);
+    if (price <= soldPrice) {
+      this.calculatedAmount = `This transaction earned you $${amount}`;
+      return 'primary';
+    } else {
+     this.calculatedAmount = `This transaction was a total loss of $${amount}`;
+    }
     return price < soldPrice ? 'primary' : 'warn';
   }
 

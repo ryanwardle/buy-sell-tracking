@@ -3,6 +3,10 @@
 .primary{
     background-color: #A5D6A7;
     color: #EEEEEE;
+
+    .edit-btn{
+      color: #EEEEEE;
+    }
 }
 
 .accent{
@@ -12,27 +16,39 @@
 .warn{
   background-color: #EF9A9A;
   color: #EEEEEE;
+
+  .delete-btn{
+    color: #EEEEEE;
+  }
 }
 
 mat-card{
-  display: flex;
-  justify-content: space-around;
   margin-top: 2rem;
-  // background-color: mat-color($app-accent);
 
-  div{
-    flex: 1 1 0;
-
-    mat-card-header{
-      font-size: 1.8rem;
-      flex-direction: column;
-      text-decoration: underline;
-    }
-  }
-
-  .buttons{
+  .main-info{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+
+    div{
+      flex: 1 1 0;
+
+      mat-card-header{
+        font-size: 1.8rem;
+        flex-direction: column;
+        text-decoration: underline;
+      }
+    }
+
+    .buttons{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+}
+
+  .calculated-amount{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
   }
 }

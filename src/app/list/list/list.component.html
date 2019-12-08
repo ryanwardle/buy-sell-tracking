@@ -40,62 +40,67 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
 </mat-card> -->
 
 <mat-card *ngFor="let item of items" [ngClass]="getColor(item.cost, item.soldPrice)">
+  <div class="main-info">
     <div>
-        <mat-card-header>
-          Date
-        </mat-card-header>
-        <p>
-          {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
-        </p>
-      </div>
-      <div>
-        <mat-card-header>
-          Description
-        </mat-card-header>
-        <p>
-          {{ item.description }}
-        </p>
-      </div>
-      <div>
-        <mat-card-header>
-          Cost
-        </mat-card-header>
-        <p>
-          {{ item.cost }}
-        </p>
-      </div>
-      <div>
-        <mat-card-header>
-          Retail
-        </mat-card-header>
-        <p>
-          {{ item.retail }}
-        </p>
-      </div>
-      <div>
-        <mat-card-header>
-          Sold Date
-        </mat-card-header>
-        <p *ngIf="item.soldDate else blankDate">
-          {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
-        </p>
-        <ng-template #blankDate>
-          <p></p>
-        </ng-template>
-      </div>
-      <div>
-        <mat-card-header>
-          Sold Price
-        </mat-card-header>
-        <p  *ngIf="item.soldDate else blankDatePrice">
-          {{ item.soldPrice }}
-        </p>
-        <ng-template #blankDatePrice>
-            <p></p>
-          </ng-template>
-      </div>
-      <div class="buttons">
-        <button mat-button color="primary">Edit</button>
-        <button mat-button color="warn">Delete</button>
-      </div>
+      <mat-card-header>
+        Date
+      </mat-card-header>
+      <p>
+        {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
+      </p>
+    </div>
+    <div>
+      <mat-card-header>
+        Description
+      </mat-card-header>
+      <p>
+        {{ item.description }}
+      </p>
+    </div>
+    <div>
+      <mat-card-header>
+        Cost
+      </mat-card-header>
+      <p>
+        {{ item.cost }}
+      </p>
+    </div>
+    <div>
+      <mat-card-header>
+        Retail
+      </mat-card-header>
+      <p>
+        {{ item.retail }}
+      </p>
+    </div>
+    <div>
+      <mat-card-header>
+        Sold Date
+      </mat-card-header>
+      <p *ngIf="item.soldDate else blankDate">
+        {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
+      </p>
+      <ng-template #blankDate>
+        <p></p>
+      </ng-template>
+    </div>
+    <div>
+      <mat-card-header>
+        Sold Price
+      </mat-card-header>
+      <p  *ngIf="item.soldDate else blankDatePrice">
+        {{ item.soldPrice }}
+      </p>
+      <ng-template #blankDatePrice>
+        <p></p>
+      </ng-template>
+    </div>
+    <div class="buttons">
+      <button mat-button class="edit-btn" color="primary">Edit</button>
+      <button mat-button class="delete-btn" color="warn">Delete</button>
+    </div>
+  </div>
+  <div class="calculated-amount">
+    {{ calculatedAmount }}
+  </div>
 </mat-card>
