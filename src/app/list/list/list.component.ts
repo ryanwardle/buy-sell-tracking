@@ -7,18 +7,18 @@ import { ListService } from '../list.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit{
 
   form: FormGroup;
   items = [];
   calculatedAmount: string;
+  calculatedTotal = 0;
 
   constructor(private listService: ListService) {
 
   }
 
   ngOnInit() {
-
     this.items = this.listService.getItems();
     console.log(this.items);
 
@@ -33,15 +33,20 @@ export class ListComponent implements OnInit {
   }
 
   getColor(price: number, soldPrice: number) {
-    if ( soldPrice.toString() === '') {return 'accent'; }
+    if ( soldPrice.toString() === '') {
+      this.calculatedAmount = `This item has not yet sold.`;
+      return 'accent';
+    }
     const amount = Math.abs(soldPrice - price);
     if (price <= soldPrice) {
+      this.calculatedTotal += amount;
       this.calculatedAmount = `This transaction earned you $${amount}`;
       return 'primary';
     } else {
-     this.calculatedAmount = `This transaction was a total loss of $${amount}`;
+      this.calculatedTotal -= amount;
+      this.calculatedAmount = `This transaction was a total loss of $${amount}`;
+      return price < soldPrice ? 'primary' : 'warn';
     }
-    return price < soldPrice ? 'primary' : 'warn';
   }
 
   // onSaveItem(form: FormGroup) {
