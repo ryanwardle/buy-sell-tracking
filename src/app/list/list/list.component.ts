@@ -7,12 +7,15 @@ import { ListService } from '../list.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit{
+export class ListComponent implements OnInit {
 
   form: FormGroup;
   items = [];
   calculatedAmount: string;
   calculatedTotal = 0;
+  totalSpent = 0;
+  averageEarned = 0;
+  transactions = 0;
 
   constructor(private listService: ListService) {
 
@@ -21,6 +24,7 @@ export class ListComponent implements OnInit{
   ngOnInit() {
     this.items = this.listService.getItems();
     console.log(this.items);
+
 
     // this.form = new FormGroup({
     //   date: new FormControl(null),
@@ -37,16 +41,32 @@ export class ListComponent implements OnInit{
       this.calculatedAmount = `This item has not yet sold.`;
       return 'accent';
     }
-    const amount = Math.abs(soldPrice - price);
+
+    // this.totalSpent += price;
+
+    // const amount = soldPrice - price;
+    console.log('Why does this run twice?');
+    console.log(this.totalSpent);
+    // this.calculatedTotal += amount;
+    // this.transactions = this.items.length;
+    // this.averageEarned = this.calculatedTotal / this.transactions;
     if (price <= soldPrice) {
-      this.calculatedTotal += amount;
       this.calculatedAmount = `This transaction earned you $${amount}`;
       return 'primary';
+
     } else {
-      this.calculatedTotal -= amount;
-      this.calculatedAmount = `This transaction was a total loss of $${amount}`;
-      return price < soldPrice ? 'primary' : 'warn';
+      this.calculatedAmount = `This transaction was a total loss of $${Math.abs(amount)}`;
+      return 'warn';
     }
+  }
+
+  setInfoParagraph(price, soldPrice) {
+    this.totalSpent += price;
+
+    const amount = soldPrice - price;
+    this.calculatedTotal += amount;
+    this.transactions = this.items.length;
+    this.averageEarned = this.calculatedTotal / this.transactions;
   }
 
   // onSaveItem(form: FormGroup) {

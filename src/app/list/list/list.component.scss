@@ -47,8 +47,13 @@ mat-card{
 }
 
   .calculated-amount{
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+
+  .info-paragraph{
     text-align: center;
-    font-size: 2rem;
-    margin-top: 1rem;
-  }
+    padding: 3rem 0;
+   }
 }

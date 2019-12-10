@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class ListService {
 
   items = [];
+  totalSpent = 0;
 
   getItems() {
     console.log(this.items);
@@ -16,4 +17,9 @@ export class ListService {
     console.log(this.items);
     return this.items;
   }
+
+  // trackTotal(price){
+  //   this.totalSpent += price;
+  //   return this.totalSpent;
+  // }
 }
