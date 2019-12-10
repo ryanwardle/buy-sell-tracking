@@ -42,15 +42,15 @@ export class ListComponent implements OnInit {
       return 'accent';
     }
 
-    // this.totalSpent += price;
+    this.totalSpent += +price;
 
-    // const amount = soldPrice - price;
+    const amount = soldPrice - price;
     console.log('Why does this run twice?');
     console.log(this.totalSpent);
-    // this.calculatedTotal += amount;
-    // this.transactions = this.items.length;
-    // this.averageEarned = this.calculatedTotal / this.transactions;
-    if (price <= soldPrice) {
+    this.calculatedTotal += amount;
+    this.transactions = this.items.length;
+    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2);
+    if (amount >= 0) {
       this.calculatedAmount = `This transaction earned you $${amount}`;
       return 'primary';
 
@@ -60,14 +60,14 @@ export class ListComponent implements OnInit {
     }
   }
 
-  setInfoParagraph(price, soldPrice) {
-    this.totalSpent += price;
-
-    const amount = soldPrice - price;
-    this.calculatedTotal += amount;
-    this.transactions = this.items.length;
-    this.averageEarned = this.calculatedTotal / this.transactions;
-  }
+  // setInfoParagraph(price, soldPrice) {
+  //   this.totalSpent += price;
+  //
+  //   const amount = soldPrice - price;
+  //   this.calculatedTotal += amount;
+  //   this.transactions = this.items.length;
+  //   this.averageEarned = this.calculatedTotal / this.transactions;
+  // }
 
   // onSaveItem(form: FormGroup) {
   //   this.form = new FormGroup({
@@ -86,4 +86,3 @@ export class ListComponent implements OnInit {
   // }
 
 }
-

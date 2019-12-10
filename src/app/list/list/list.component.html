@@ -104,7 +104,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
     {{ calculatedAmount }}
   </div>
 </mat-card>
-<mat-card ngClass="totalSpent >= 0 ? primary : warn">
+<mat-card [ngClass]="return +totalSpent >= 0 ? 'primary' : 'warn'">
   <p class="info-paragraph">
     You have currently spent ${{ totalSpent }} on {{ transactions }} transactions for a total of ${{ calculatedTotal }} earned
     and an average of ${{ averageEarned }} per transaction.
