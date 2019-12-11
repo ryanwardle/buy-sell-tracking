@@ -24,6 +24,8 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.items = this.listService.getItems();
     console.log(this.items);
+    
+    // this.checkTotalLossOrGain();
 
 
     // this.form = new FormGroup({
@@ -58,6 +60,10 @@ export class ListComponent implements OnInit {
       this.calculatedAmount = `This transaction was a total loss of $${Math.abs(amount)}`;
       return 'warn';
     }
+  }
+
+  checkTotalLossOrGain() {
+    return +this.calculatedTotal >= 0 ? 'primary' : 'warn';
   }
 
   // setInfoParagraph(price, soldPrice) {
