@@ -2,11 +2,12 @@
 
 .primary{
     background-color: #A5D6A7;
-    color: #EEEEEE;
+    // color: #EEEEEE;
 
-    .edit-btn{
-      color: #EEEEEE;
-    }
+// CAN DELETE CLASS NAME IF I DELETE THIS TOO
+    // .edit-btn{
+    //   // color: #EEEEEE;
+    // }
 }
 
 .accent{
@@ -15,15 +16,17 @@
 
 .warn{
   background-color: #EF9A9A;
-  color: #EEEEEE;
-
-  .delete-btn{
-    color: #EEEEEE;
-  }
+  // color: #EEEEEE;
+  
+// CAN DELETE CLASS NAME IF I DELETE THIS TOO
+  // .delete-btn{
+  //   // color: #EEEEEE;
+  // }
 }
 
 mat-card{
   margin-top: 2rem;
+  color: black;
 
   .main-info{
     display: flex;
