@@ -23,7 +23,23 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.listService.getItems();
-    console.log(this.items);
+
+// Cycles through items
+    this.items.map(item => {
+      if (item.soldPrice !== '') {
+        // If item has sold price count it as a transaction
+        this.transactions++;
+
+        // Get the profit or loss and add it to the total
+        const amount = item.soldPrice - item.cost;
+        this.calculatedTotal += amount;
+      }
+      // Add cost of item to total spent
+      this.totalSpent += +item.cost;
+    });
+
+// Divide profit or loss of all sold items by number of completed transactions
+    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
 
     // this.form = new FormGroup({
     //   date: new FormControl(null),
@@ -42,19 +58,7 @@ export class ListComponent implements OnInit {
       this.calculatedAmount = `This item has not yet sold.`;
       return 'accent';
     }
-
-// This information is seperate from getting the color, and is causing the error, should
-// I put this into its own function and call it here?
-// TODO:
-// run code with this and the related html code and see if I still get the error
-// think of a different way to keep track of the totals
-    this.totalSpent += +price;
     const amount = soldPrice - price;
-    console.log('Why does this run twice?');
-    console.log(this.totalSpent);
-    this.calculatedTotal += amount;
-    this.transactions = this.items.length;
-    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2);
 
     // Checks if item was sold for a loss or a gain
     if (amount >= 0) {
@@ -70,15 +74,6 @@ export class ListComponent implements OnInit {
   checkTotalLossOrGain() {
     return this.calculatedTotal >= 0 ? 'primary' : 'warn';
   }
-
-  // setInfoParagraph(price, soldPrice) {
-  //   this.totalSpent += price;
-  //
-  //   const amount = soldPrice - price;
-  //   this.calculatedTotal += amount;
-  //   this.transactions = this.items.length;
-  //   this.averageEarned = this.calculatedTotal / this.transactions;
-  // }
 
   // onSaveItem(form: FormGroup) {
   //   this.form = new FormGroup({

@@ -105,8 +105,34 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
   </div>
 </mat-card>
 <mat-card [ngClass]="checkTotalLossOrGain()">
-  <p class="info-paragraph">
-    You have currently spent ${{ totalSpent }} on {{ transactions }} transactions for a total of ${{ calculatedTotal }} earned
+  <!-- <p class="info-paragraph">
+    You have currently spent ${{ totalSpent }} on {{ transactions }} completed transactions for a total of ${{ calculatedTotal }} earned
     and an average of ${{ averageEarned }} per transaction.
-  </p>
+  </p> -->
+  <div class="main-info">
+    <div>
+      <mat-card-header>
+        Total Spent
+      </mat-card-header>
+      <p>${{ totalSpent }}</p>
+    </div>
+    <div>
+      <mat-card-header>
+        Completed Transactions
+      </mat-card-header>
+      <p>{{ transactions }}</p>
+    </div>
+    <div>
+      <mat-card-header>
+        Gain/Loss
+      </mat-card-header>
+      <p>${{ calculatedTotal }}</p>
+    </div>
+    <div>
+      <mat-card-header>
+        Average Per Transaction
+      </mat-card-header>
+      <p>${{ averageEarned }}</p>
+    </div>
+  </div>
 </mat-card>

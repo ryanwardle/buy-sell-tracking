@@ -51,12 +51,9 @@ export class ListItemComponent implements OnInit {
     //   soldPrice: this.form.controls.soldPrice.value
     // });
 
-    console.log(this.form.value);
-
     this.listService.addItem(this.form.value);
     this.form.reset();
     this.router.navigate(['/item-list']);
   }
 
 }
-
