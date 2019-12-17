@@ -21,7 +21,6 @@ export class ListService {
     this.items = this.items.filter(item => {
       return item.id !== itemId;
     });
-    console.log(this.items);
     return this.items;
   }
 }

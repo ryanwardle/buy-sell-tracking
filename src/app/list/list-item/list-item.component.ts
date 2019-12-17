@@ -30,7 +30,7 @@ export class ListItemComponent implements OnInit {
     });
   }
 
-  onSubmitItem(form: FormGroup) {
+  onSubmitItem() {
 
     if (this.form.invalid) {return; }
 
@@ -60,11 +60,9 @@ export class ListItemComponent implements OnInit {
     // });
   }
 
-  onSetSoldDate(event) {
-    console.log(event);
-    const date = event.target.value.split('/');
-    console.log(date);
-    this.minDate = new Date(date[2], date[0] - 1, date[1]);
+  onSetSoldDate(event: Event) {
+    const date = (event.target as HTMLInputElement).value.split('/');
+    this.minDate = new Date(+date[2], +date[0] - 1, +date[1]);
   }
 
 }
