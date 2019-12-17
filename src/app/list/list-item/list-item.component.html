@@ -2,24 +2,27 @@
   <form [formGroup]="form" (submit)="onSubmitItem()" color="primary">
     <div class="dates">
       <mat-form-field class="date-picker">
-        <input matInput [matDatepicker]="picker" formControlName="date" name="date" placeholder="Purchase date" required>
+        <input matInput [matDatepicker]="picker" (change)="onSetSoldDate($event)" formControlName="date" name="date" placeholder="Purchase date" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="date-picker">
-        <input matInput [matDatepicker]="pickerSold" formControlName="soldDate" name="soldDate" placeholder="Sold date">
+        <input matInput  [min]="minDate" [matDatepicker]="pickerSold" formControlName="soldDate" name="soldDate" placeholder="Sold date">
         <mat-datepicker-toggle matSuffix [for]="pickerSold"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerSold></mat-datepicker>
+        <mat-error *ngIf="form.controls.soldDate.invalid">Sold date must be after purchase date</mat-error>
       </mat-form-field>
     </div>
 
     <mat-form-field>
-      <input matInput formControlName="cost" name="cost" type="text" placeholder="Item cost" required>
+      <input matInput formControlName="cost" name="cost" type="number" placeholder="Item cost" required>
+      <mat-error *ngIf="form.controls.cost.invalid">Input must be a number</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="retail" name="retail" type="text" placeholder="Item retail" required>
+      <input matInput formControlName="retail" name="retail" type="number" placeholder="Item retail" required>
+      <mat-error *ngIf="form.controls.retail.invalid">Input must be a number</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -27,11 +30,10 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="soldPrice" name="soldPrice" type="text" placeholder="Sold price">
+      <input matInput formControlName="soldPrice" name="soldPrice" type="number" placeholder="Sold price">
+      <mat-error *ngIf="form.controls.soldPrice.invalid">Input must be a number</mat-error>
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>
 </mat-card>
-
-

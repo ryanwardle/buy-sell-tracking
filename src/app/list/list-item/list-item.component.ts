@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ListItemComponent implements OnInit {
 
   form: FormGroup;
+  minDate: Date;
 
   constructor(private listService: ListService,
               private router: Router) {
@@ -42,6 +43,13 @@ export class ListItemComponent implements OnInit {
       soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
 
+    const id = Math.round(Math.random() * 1000000000);
+    this.form.value.id = id;
+    console.log(this.form.value);
+    this.listService.addItem(this.form.value);
+    this.form.reset();
+    this.router.navigate(['/item-list']);
+
     // this.form.setValue({
     //   date: this.form.controls.date.value,
     //   description: this.form.controls.description.value,
@@ -50,10 +58,13 @@ export class ListItemComponent implements OnInit {
     //   soldDate: this.form.controls.soldDate.value,
     //   soldPrice: this.form.controls.soldPrice.value
     // });
+  }
 
-    this.listService.addItem(this.form.value);
-    this.form.reset();
-    this.router.navigate(['/item-list']);
+  onSetSoldDate(event) {
+    console.log(event);
+    const date = event.target.value.split('/');
+    console.log(date);
+    this.minDate = new Date(date[2], date[0] - 1, date[1]);
   }
 
 }

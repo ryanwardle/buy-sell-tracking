@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ListService } from '../list.service';
+import { Item } from '../item.model';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import { ListService } from '../list.service';
 export class ListComponent implements OnInit {
 
   form: FormGroup;
-  items = [];
+  items: Item[] = [];
   calculatedAmount: string;
   calculatedTotal = 0;
   totalSpent = 0;
@@ -24,9 +25,11 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.items = this.listService.getItems();
 
+    // this.calculateTotals(this.items);
+
 // Cycles through items
     this.items.map(item => {
-      if (item.soldPrice !== '') {
+      if (item.soldPrice) {
         // If item has sold price count it as a transaction
         this.transactions++;
 
@@ -35,7 +38,7 @@ export class ListComponent implements OnInit {
         this.calculatedTotal += amount;
       }
       // Add cost of item to total spent
-      this.totalSpent += +item.cost;
+      this.totalSpent += item.cost;
     });
 
 // Divide profit or loss of all sold items by number of completed transactions
@@ -73,6 +76,20 @@ export class ListComponent implements OnInit {
 
   checkTotalLossOrGain() {
     return this.calculatedTotal >= 0 ? 'primary' : 'warn';
+  }
+
+  onDeleteItem(item: Item) {
+    // remove item and update list
+    this.items = this.listService.deleteItem(item.id);
+    // remove transaction
+    this.transactions--;
+    // remove amount gained or lost
+    const amount = item.soldPrice - item.cost;
+    this.calculatedTotal -= amount;
+    // remove cost from total spent
+    this.totalSpent -= +item.cost;
+    // recalculate average
+    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
   }
 
   // onSaveItem(form: FormGroup) {

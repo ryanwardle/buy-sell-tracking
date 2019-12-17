@@ -97,7 +97,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
     </div>
     <div class="buttons">
       <button mat-button class="edit-btn">Edit</button>
-      <button mat-button class="delete-btn">Delete</button>
+      <button mat-button (click)="onDeleteItem(item)" class="delete-btn">Delete</button>
     </div>
   </div>
   <div class="calculated-amount">
@@ -105,10 +105,6 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
   </div>
 </mat-card>
 <mat-card [ngClass]="checkTotalLossOrGain()">
-  <!-- <p class="info-paragraph">
-    You have currently spent ${{ totalSpent }} on {{ transactions }} completed transactions for a total of ${{ calculatedTotal }} earned
-    and an average of ${{ averageEarned }} per transaction.
-  </p> -->
   <div class="main-info">
     <div>
       <mat-card-header>
