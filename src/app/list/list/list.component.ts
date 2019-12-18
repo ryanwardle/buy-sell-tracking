@@ -25,10 +25,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.items = this.listService.getItems();
 
-    // this.calculateTotals(this.items);
-
 // Cycles through items
     this.items.map(item => {
+
       if (item.soldPrice) {
         // If item has sold price count it as a transaction
         this.transactions++;
@@ -36,13 +35,21 @@ export class ListComponent implements OnInit {
         // Get the profit or loss and add it to the total
         const amount = item.soldPrice - item.cost;
         this.calculatedTotal += amount;
+      } else {
+        // If item has not sold, still subtract cost of item from loss/gain
+        this.calculatedTotal -= item.cost;
       }
+
       // Add cost of item to total spent
       this.totalSpent += item.cost;
     });
 
 // Divide profit or loss of all sold items by number of completed transactions
     this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
+
+    if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
+      this.averageEarned = 0;
+    }
 
     // this.form = new FormGroup({
     //   date: new FormControl(null),
@@ -81,15 +88,24 @@ export class ListComponent implements OnInit {
   onDeleteItem(item: Item) {
     // remove item and update list
     this.items = this.listService.deleteItem(item.id);
-    // remove transaction
-    this.transactions--;
+
+    if (item.soldPrice) {
+      // f item has sold remove transaction
+      this.transactions--;
+    }
     // remove amount gained or lost
     const amount = item.soldPrice - item.cost;
     this.calculatedTotal -= amount;
+
     // remove cost from total spent
     this.totalSpent -= +item.cost;
+
     // recalculate average
     this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
+
+    if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
+      this.averageEarned = 0;
+    }
   }
 
   // onSaveItem(form: FormGroup) {
