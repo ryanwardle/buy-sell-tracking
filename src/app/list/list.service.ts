@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Item } from './item.model';
+// import { environment } from '../../environments/environment';
+
+// const BACKEND_URL = environment.apiUrl;
 
 @Injectable({providedIn: 'root'})
 export class ListService {
@@ -15,7 +18,7 @@ export class ListService {
   }
 
   addItem(item: Item) {
-    this.http.post('http://localhost:4200/add-item', item);
+    this.http.post('http://localhost:4000/add-item', item);
     // Use unshift to display in order, push would put them in reverse order
     this.items.unshift(item);
     return this.items;
