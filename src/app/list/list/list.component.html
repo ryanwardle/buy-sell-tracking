@@ -62,7 +62,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
         Cost
       </mat-card-header>
       <p>
-        {{ item.cost }}
+        ${{ item.cost }}
       </p>
     </div>
     <div>
@@ -70,7 +70,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
         Retail
       </mat-card-header>
       <p>
-        {{ item.retail }}
+        ${{ item.retail }}
       </p>
     </div>
     <div>
@@ -89,7 +89,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
         Sold Price
       </mat-card-header>
       <p  *ngIf="item.soldDate else blankDatePrice">
-        {{ item.soldPrice }}
+        ${{ item.soldPrice }}
       </p>
       <ng-template #blankDatePrice>
         <p></p>

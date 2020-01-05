@@ -7,15 +7,20 @@ app.use(express.static(path.join(__dirname)));
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 app.use(express.static(path.join(__dirname, '../src')))
 console.log(path.join(__dirname))
 
 app.post('/add-item', (req, res) => {
-  console.log('This has been triggered')
   items.unshift(req.body);
-  res.json(items)
-  console.log(res.json(items))
-  console.log(items)
+  console.log(items);
+  res.status(200).json(items)
 });
 
 

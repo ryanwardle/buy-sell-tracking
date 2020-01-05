@@ -18,7 +18,9 @@ export class ListService {
   }
 
   addItem(item: Item) {
-    this.http.post('http://localhost:4000/add-item', item);
+    this.http.post('http://localhost:4000/add-item', item).subscribe(res => {
+      console.log(res);
+    });
     // Use unshift to display in order, push would put them in reverse order
     this.items.unshift(item);
     return this.items;
