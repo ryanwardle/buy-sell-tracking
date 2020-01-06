@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const items = require('./Items.js');
+// const Item = require('../src/app/list/item.model.js');
 
 const app = express();
 app.use(express.static(path.join(__dirname)));
@@ -14,8 +15,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, '../src')))
-console.log(path.join(__dirname))
+app.use(express.static(path.join(__dirname, '../')))
+
+app.get('/', (req, res) => {
+  console.log('This has been triggered')
+  // console.log(items);
+  res.status(200).json(items);
+  // res.json({msg: 'This is a test message'})
+});
 
 app.post('/add-item', (req, res) => {
   items.unshift(req.body);

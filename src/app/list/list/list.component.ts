@@ -24,6 +24,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.listService.getItems();
+    console.log(this.items);
+    // this.listService.getItems().subscribe((res: Item[]) => {
+    //   this.items = res;
+    //   console.log(res);
+    // });
 
 // Cycles through items
     this.items.map(item => {
