@@ -11,7 +11,7 @@ import { Item } from '../item.model';
 export class ListComponent implements OnInit {
 
   form: FormGroup;
-  items: Item[] = [];
+  public items: Item[] = [];
   calculatedAmount: string;
   calculatedTotal = 0;
   totalSpent = 0;
@@ -23,38 +23,37 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items = this.listService.getItems();
-    console.log(this.items);
-    // this.listService.getItems().subscribe((res: Item[]) => {
-    //   this.items = res;
-    //   console.log(res);
-    // });
-
-// Cycles through items
-    this.items.map(item => {
-
-      if (item.soldPrice) {
-        // If item has sold price count it as a transaction
-        this.transactions++;
-
-        // Get the profit or loss and add it to the total
-        const amount = item.soldPrice - item.cost;
-        this.calculatedTotal += amount;
-      } else {
-        // If item has not sold, still subtract cost of item from loss/gain
-        this.calculatedTotal -= item.cost;
-      }
-
-      // Add cost of item to total spent
-      this.totalSpent += item.cost;
+    // this.items = this.listService.getItems();
+    // console.log(this.items);
+    this.listService.getItems().subscribe((res: Item[]) => {
+      this.items = res;
+      //   // Cycles through items
+      // this.items.map(item => {
+      //         console.log(item);
+      //         if (item.soldPrice) {
+      //           // If item has sold price count it as a transaction
+      //           this.transactions++;
+      //
+      //           // Get the profit or loss and add it to the total
+      //           const amount = item.soldPrice - item.cost;
+      //           this.calculatedTotal += amount;
+      //         } else {
+      //           // If item has not sold, still subtract cost of item from loss/gain
+      //           this.calculatedTotal -= item.cost;
+      //         }
+      //
+      //         // Add cost of item to total spent
+      //         this.totalSpent += item.cost;
+      //       });
+      //
+      //   // Divide profit or loss of all sold items by number of completed transactions
+      // this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
+      //
+      // if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
+      //         this.averageEarned = 0;
+      //   }
+      console.log(res);
     });
-
-// Divide profit or loss of all sold items by number of completed transactions
-    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
-
-    if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
-      this.averageEarned = 0;
-    }
 
     // this.form = new FormGroup({
     //   date: new FormControl(null),
@@ -64,6 +63,32 @@ export class ListComponent implements OnInit {
     //   soldDate: new FormControl(null),
     //   soldPrice: new FormControl(null)
     // });
+
+      // Cycles through items
+    this.items.map(item => {
+
+        if (item.soldPrice) {
+              // If item has sold price count it as a transaction
+              this.transactions++;
+
+             // Get the profit or loss and add it to the total
+              const amount = item.soldPrice - item.cost;
+              this.calculatedTotal += amount;
+            } else {
+              // If item has not sold, still subtract cost of item from loss/gain
+              this.calculatedTotal -= item.cost;
+            }
+
+            // Add cost of item to total spent
+        this.totalSpent += item.cost;
+          });
+
+      // Divide profit or loss of all sold items by number of completed transactions
+    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
+
+    if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
+            this.averageEarned = 0;
+    }
   }
 
   getColor(price: number, soldPrice: number) {

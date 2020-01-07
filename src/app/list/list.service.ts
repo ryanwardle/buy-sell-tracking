@@ -16,13 +16,13 @@ export class ListService {
   constructor(private http: HttpClient) {}
 
   getItems() {
-    this.http.get('http://localhost:4000/').subscribe((items: Item[]) => {
-      this.items = items;
-      // this.listChanged.next([...items]);
-      console.log(this.items);
-    });
-    return this.items;
-    // return this.http.get('http://localhost:4000/');
+    // this.http.get('http://localhost:4000/').subscribe((items: Item[]) => {
+    //   this.items = items;
+    //   // this.listChanged.next([...items]);
+    //   console.log(this.items);
+    // });
+    // return this.items;
+    return this.http.get('http://localhost:4000/');
   }
 
   addItem(item: Item) {
