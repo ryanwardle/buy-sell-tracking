@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Item } from './item.model';
-import { Subject } from 'rxjs';
+// import { Subject } from 'rxjs';
 // import { environment } from '../../environments/environment';
 
 // const BACKEND_URL = environment.apiUrl;
@@ -11,7 +11,7 @@ export class ListService {
 
   items: Item[] = [];
   totalSpent = 0;
-  private listChanged = new Subject<Item[]>();
+  // private listChanged = new Subject<Item[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -34,11 +34,23 @@ export class ListService {
     return this.items;
   }
 
-  deleteItem(itemId: number) {
+  deleteItem(itemId: string) {
+    const deleteHeaders = new HttpHeaders({
+      itemId
+    });
+    this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders}).subscribe(res => {
+      console.log(res);
+      // this.items = res;
+    });
     this.items = this.items.filter(item => {
       return item.id !== itemId;
     });
     return this.items;
+
+    // const deleteHeaders = new HttpHeaders({
+    //   itemId
+    // });
+    // return this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders});
   }
 
   // getListUpdateListener() {

@@ -45,9 +45,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
       <mat-card-header>
         Date
       </mat-card-header>
-      <p>
-        {{ item.date.getMonth() + 1 }}/{{item.date.getDate() }}/{{ item.date.getFullYear() }}
-      </p>
+      <p>{{ dateString }}</p>
     </div>
     <div>
       <mat-card-header>
@@ -77,9 +75,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
       <mat-card-header>
         Sold Date
       </mat-card-header>
-      <p *ngIf="item.soldDate else blankDate">
-        {{ item.soldDate.getMonth() + 1 }}/{{item.soldDate.getDate() }}/{{ item.soldDate.getFullYear() }}
-      </p>
+      <p *ngIf="item.soldDate else blankDate">{{ soldString }}</p>
       <ng-template #blankDate>
         <p></p>
       </ng-template>

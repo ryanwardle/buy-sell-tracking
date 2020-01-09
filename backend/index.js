@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, itemid');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   next();
 });
@@ -18,16 +18,20 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '../')))
 
 app.get('/', (req, res) => {
-  console.log('This has been triggered')
-  // console.log(items);
   res.status(200).json(items);
-  // res.json({msg: 'This is a test message'})
 });
 
 app.post('/add-item', (req, res) => {
   items.unshift(req.body);
-  console.log(items);
   res.status(200).json(items)
+});
+
+app.delete('/', (req, res) => {
+  items.filter(item => {
+    item.id !== req.headers.itemid;
+  });
+  console.log(items)
+  res.status(200).json(items);
 });
 
 

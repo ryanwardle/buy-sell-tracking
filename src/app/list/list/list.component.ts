@@ -17,41 +17,49 @@ export class ListComponent implements OnInit {
   totalSpent = 0;
   averageEarned = 0;
   transactions = 0;
+  date: Date;
+  dateString: string;
+  soldDate: Date;
+  soldString: string;
 
   constructor(private listService: ListService) {
 
   }
 
   ngOnInit() {
-    // this.items = this.listService.getItems();
-    // console.log(this.items);
     this.listService.getItems().subscribe((res: Item[]) => {
       this.items = res;
-      //   // Cycles through items
-      // this.items.map(item => {
-      //         console.log(item);
-      //         if (item.soldPrice) {
-      //           // If item has sold price count it as a transaction
-      //           this.transactions++;
-      //
-      //           // Get the profit or loss and add it to the total
-      //           const amount = item.soldPrice - item.cost;
-      //           this.calculatedTotal += amount;
-      //         } else {
-      //           // If item has not sold, still subtract cost of item from loss/gain
-      //           this.calculatedTotal -= item.cost;
-      //         }
-      //
-      //         // Add cost of item to total spent
-      //         this.totalSpent += item.cost;
-      //       });
-      //
-      //   // Divide profit or loss of all sold items by number of completed transactions
-      // this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
-      //
-      // if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
-      //         this.averageEarned = 0;
-      //   }
+        // Cycles through items
+      this.items.map(item => {
+        // get date and convert to string
+              this.date = new Date(item.date);
+              this.dateString =  `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`;
+        // get sold date and convert to string
+              this.soldDate = new Date(item.soldDate);
+              this.soldString = `${this.soldDate.getMonth() + 1}/${this.soldDate.getDate()}/${this.soldDate.getFullYear()}`;
+
+              if (item.soldPrice) {
+                // If item has sold price count it as a transaction
+                this.transactions++;
+
+                // Get the profit or loss and add it to the total
+                const amount = item.soldPrice - item.cost;
+                this.calculatedTotal += amount;
+              } else {
+                // If item has not sold, still subtract cost of item from loss/gain
+                this.calculatedTotal -= item.cost;
+              }
+
+              // Add cost of item to total spent
+              this.totalSpent += item.cost;
+            });
+
+        // Divide profit or loss of all sold items by number of completed transactions
+      this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
+
+      if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
+              this.averageEarned = 0;
+        }
       console.log(res);
     });
 
@@ -63,32 +71,6 @@ export class ListComponent implements OnInit {
     //   soldDate: new FormControl(null),
     //   soldPrice: new FormControl(null)
     // });
-
-      // Cycles through items
-    this.items.map(item => {
-
-        if (item.soldPrice) {
-              // If item has sold price count it as a transaction
-              this.transactions++;
-
-             // Get the profit or loss and add it to the total
-              const amount = item.soldPrice - item.cost;
-              this.calculatedTotal += amount;
-            } else {
-              // If item has not sold, still subtract cost of item from loss/gain
-              this.calculatedTotal -= item.cost;
-            }
-
-            // Add cost of item to total spent
-        this.totalSpent += item.cost;
-          });
-
-      // Divide profit or loss of all sold items by number of completed transactions
-    this.averageEarned = +(this.calculatedTotal / this.transactions).toFixed(2) || 0;
-
-    if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
-            this.averageEarned = 0;
-    }
   }
 
   getColor(price: number, soldPrice: number) {

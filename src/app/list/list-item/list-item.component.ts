@@ -44,7 +44,7 @@ export class ListItemComponent implements OnInit {
     });
 
     const id = Math.round(Math.random() * 1000000000);
-    this.form.value.id = id;
+    this.form.value.id = id.toString();
     console.log(this.form.value);
     this.listService.addItem(this.form.value);
     this.form.reset();

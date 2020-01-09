@@ -7,5 +7,5 @@ export interface Item {
   retail: number;
   soldDate: Date;
   soldPrice: number;
-  id: number;
+  id: string;
 }
