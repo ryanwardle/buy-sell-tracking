@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const items = require('./Items.js');
+let items = require('./Items.js');
 // const Item = require('../src/app/list/item.model.js');
 
 const app = express();
@@ -27,10 +27,9 @@ app.post('/add-item', (req, res) => {
 });
 
 app.delete('/', (req, res) => {
-  items.filter(item => {
-    item.id !== req.headers.itemid;
+  items = items.filter(item => {
+    return item.id !== req.headers.itemid;
   });
-  console.log(items)
   res.status(200).json(items);
 });
 

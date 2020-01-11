@@ -60,7 +60,6 @@ export class ListComponent implements OnInit {
       if (this.averageEarned === -Infinity || isNaN(this.averageEarned)) {
               this.averageEarned = 0;
         }
-      console.log(res);
     });
 
     // this.form = new FormGroup({
@@ -99,7 +98,9 @@ export class ListComponent implements OnInit {
 
   onDeleteItem(item: Item) {
     // remove item and update list
-    this.items = this.listService.deleteItem(item.id);
+    this.listService.deleteItem(item.id).subscribe(res => {
+      this.items = res;
+    });
 
     if (item.soldPrice) {
       // f item has sold remove transaction

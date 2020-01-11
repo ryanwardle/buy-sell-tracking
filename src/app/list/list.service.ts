@@ -25,6 +25,8 @@ export class ListService {
     return this.http.get('http://localhost:4000/');
   }
 
+
+// Should make call and return http request like other routes
   addItem(item: Item) {
     this.http.post('http://localhost:4000/add-item', item).subscribe(res => {
       console.log(res);
@@ -38,19 +40,7 @@ export class ListService {
     const deleteHeaders = new HttpHeaders({
       itemId
     });
-    this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders}).subscribe(res => {
-      console.log(res);
-      // this.items = res;
-    });
-    this.items = this.items.filter(item => {
-      return item.id !== itemId;
-    });
-    return this.items;
-
-    // const deleteHeaders = new HttpHeaders({
-    //   itemId
-    // });
-    // return this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders});
+    return this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders});
   }
 
   // getListUpdateListener() {
