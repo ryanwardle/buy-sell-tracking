@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListService } from '../list.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Item } from '../item.model';
 
 @Component({
   selector: 'app-list-item',
@@ -12,8 +13,10 @@ export class ListItemComponent implements OnInit {
 
   form: FormGroup;
   minDate: Date;
+  private mode = 'create';
 
   constructor(private listService: ListService,
+              private route: ActivatedRoute,
               private router: Router) {
 
   }
@@ -28,7 +31,29 @@ export class ListItemComponent implements OnInit {
       soldDate: new FormControl(''),
       soldPrice: new FormControl('')
     });
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('itemId')) {
+        this.mode = 'edit';
+        const itemId = paramMap.get('itemId');
+        this.listService.getItem(itemId).subscribe((item: Item) => {
+          this.form.setValue({
+            date: item.date,
+            description: item.description,
+            cost: item.cost,
+            retail: item.retail,
+            soldDate: item.soldDate,
+            soldPrice: item.soldPrice
+          });
+          console.log(item);
+        });
+      }
+    });
+    console.log(this.mode);
   }
+
+// NEED TO REPLACE ORIGINAL ITEM IN DOM, CURRENTLY DISPLAYING 2
+// NEED TO WRITE 'PUT' ROUTE
 
   onSubmitItem() {
 
@@ -49,15 +74,6 @@ export class ListItemComponent implements OnInit {
     this.listService.addItem(this.form.value);
     this.form.reset();
     this.router.navigate(['/item-list']);
-
-    // this.form.setValue({
-    //   date: this.form.controls.date.value,
-    //   description: this.form.controls.description.value,
-    //   cost: this.form.controls.cost.value,
-    //   retail: this.form.controls.retail.value,
-    //   soldDate: this.form.controls.soldDate.value,
-    //   soldPrice: this.form.controls.soldPrice.value
-    // });
   }
 
   onSetSoldDate(event: Event) {

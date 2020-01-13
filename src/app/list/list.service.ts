@@ -25,6 +25,10 @@ export class ListService {
     return this.http.get('http://localhost:4000/');
   }
 
+  getItem(itemId: string) {
+    return this.http.get('http://localhost:4000/' + itemId);
+  }
+
 
 // Should make call and return http request like other routes
   addItem(item: Item) {

@@ -17,15 +17,26 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, '../')))
 
+// Gets all items
 app.get('/', (req, res) => {
   res.status(200).json(items);
 });
 
+// Gets a single item
+app.get('/:itemId', (req, res) => {
+  console.log(req);
+    items.map(item => {
+      if(item.id === req.params.itemId) {res.status(200).json(item);}
+    });
+});
+
+// Adds a single item
 app.post('/add-item', (req, res) => {
   items.unshift(req.body);
   res.status(200).json(items)
 });
 
+// Deletes a single item
 app.delete('/', (req, res) => {
   items = items.filter(item => {
     return item.id !== req.headers.itemid;

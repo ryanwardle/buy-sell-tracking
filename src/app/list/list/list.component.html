@@ -92,7 +92,7 @@ AND EDIT WOULD BE ON AN INDIVIDUAL ITEM -->
       </ng-template>
     </div>
     <div class="buttons">
-      <button mat-button class="edit-btn">Edit</button>
+      <button mat-button [routerLink]="['/edit', item.id]" class="edit-btn">Edit</button>
       <button mat-button (click)="onDeleteItem(item)" class="delete-btn">Delete</button>
     </div>
   </div>
