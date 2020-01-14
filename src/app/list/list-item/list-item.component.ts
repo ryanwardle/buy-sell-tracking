@@ -68,10 +68,17 @@ export class ListItemComponent implements OnInit {
       soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
 
+// This will cause to create new id when edited
     const id = Math.round(Math.random() * 1000000000);
     this.form.value.id = id.toString();
     console.log(this.form.value);
-    this.listService.addItem(this.form.value);
+
+    if (this.mode === 'create') {
+      this.listService.addItem(this.form.value);
+    } else {
+      this.listService.editItem(this.form.value);
+    }
+
     this.form.reset();
     this.router.navigate(['/item-list']);
   }
