@@ -35,6 +35,7 @@ export class ListService {
     this.http.post('http://localhost:4000/add-item', item).subscribe(res => {
       console.log(res);
     });
+
     // Use unshift to display in order, push would put them in reverse order
     this.items.unshift(item);
     return this.items;
@@ -47,6 +48,8 @@ export class ListService {
     return this.http.delete<Item[]>('http://localhost:4000/', {headers: deleteHeaders});
   }
 
+
+// NOW THAT IDS ARE THE SAME, NEED TO WRITE A PUT REQUEST SO INFORMATIN CHANGES ON BACKEND TO DISPLAY WHEN RETRIEVED
   editItem(changedItem: Item) {
     // console.log(this.items);
     // this.items.map((currentItem, index) => {
@@ -57,9 +60,13 @@ export class ListService {
     //   }
     // });
     this.getItems().subscribe((items: Item[]) => {
-      items.map(item => {
+      items.map((item, index) => {
+        console.log(changedItem);
+        console.log(item);
         if (item.id === changedItem.id) {
-          item = changedItem;
+          console.log('test');
+          // item = changedItem;
+          items.splice(index, 1, changedItem);
         }
       });
       console.log(items);

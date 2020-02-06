@@ -49,7 +49,7 @@ export class ListItemComponent implements OnInit {
         });
       }
     });
-    console.log(this.mode);
+
   }
 
 // NEED TO REPLACE ORIGINAL ITEM IN DOM, CURRENTLY DISPLAYING 2
@@ -68,14 +68,15 @@ export class ListItemComponent implements OnInit {
       soldPrice: new FormControl(this.form.controls.soldPrice.value)
     });
 
-// This will cause to create new id when edited
-    const id = Math.round(Math.random() * 1000000000);
-    this.form.value.id = id.toString();
-    console.log(this.form.value);
-
     if (this.mode === 'create') {
+      // creates ID for new item
+      const id = Math.round(Math.random() * 1000000000);
+      this.form.value.id = id.toString();
       this.listService.addItem(this.form.value);
     } else {
+      // Gets old ID if item is edited
+      const id = this.route.snapshot.url[1].path;
+      this.form.value.id = id.toString();
       this.listService.editItem(this.form.value);
     }
 
