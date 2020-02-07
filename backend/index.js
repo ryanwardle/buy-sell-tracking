@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 // Gets a single item
 app.get('/:itemId', (req, res) => {
-  console.log(req);
+  // console.log(req);
     items.map(item => {
       if(item.id === req.params.itemId) {res.status(200).json(item);}
     });
@@ -44,6 +44,10 @@ app.delete('/', (req, res) => {
   res.status(200).json(items);
 });
 
+app.put('/', (req, res) => {
+  console.log('test');
+  console.log(req.body);
+});
 
 const PORT = process.env.PORT || 4000;
 

@@ -49,30 +49,24 @@ export class ListService {
   }
 
 
-// NOW THAT IDS ARE THE SAME, NEED TO WRITE A PUT REQUEST SO INFORMATIN CHANGES ON BACKEND TO DISPLAY WHEN RETRIEVED
   editItem(changedItem: Item) {
-    // console.log(this.items);
-    // this.items.map((currentItem, index) => {
-    //   if (currentItem.id === item.id) {
-    //     this.items = this.items.splice(index, 1, item);
-    //     console.log(this.items);
-    //     return this.items;
-    //   }
-    // });
     this.getItems().subscribe((items: Item[]) => {
       items.map((item, index) => {
-        console.log(changedItem);
-        console.log(item);
         if (item.id === changedItem.id) {
-          console.log('test');
-          // item = changedItem;
           items.splice(index, 1, changedItem);
+          // const putHeaders = new HttpHeaders({
+          //   string: 'test'
+          // });
+          // return this.http.put<Item[]>('http://localhost:4000/', putHeaders);
+          return this.http.put<Item[]>('http://localhost:4000/', items);
         }
       });
       console.log(items);
-      return items;
+      // return this.http.put<Item[]>('http://localhost:4000/edit/:itemId', items);
     });
   }
+
+
   // getListUpdateListener() {
   //   return this.listChanged.asObservable();
   // }
