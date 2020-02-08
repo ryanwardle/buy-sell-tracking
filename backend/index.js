@@ -44,9 +44,10 @@ app.delete('/', (req, res) => {
   res.status(200).json(items);
 });
 
+
 app.put('/', (req, res) => {
-  console.log('test');
-  console.log(req.body);
+  items = req.body;
+  res.status(200).json(items);
 });
 
 const PORT = process.env.PORT || 4000;

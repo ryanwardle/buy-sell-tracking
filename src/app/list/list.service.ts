@@ -54,16 +54,14 @@ export class ListService {
       items.map((item, index) => {
         if (item.id === changedItem.id) {
           items.splice(index, 1, changedItem);
-          // const putHeaders = new HttpHeaders({
-          //   string: 'test'
-          // });
-          // return this.http.put<Item[]>('http://localhost:4000/', putHeaders);
-          return this.http.put<Item[]>('http://localhost:4000/', items);
+          return this.http.put<Item[]>('http://localhost:4000/', items).subscribe(res => {
+            this.items = res;
+            console.log(this.items);
+          });
         }
       });
-      console.log(items);
-      // return this.http.put<Item[]>('http://localhost:4000/edit/:itemId', items);
     });
+    console.log(this.items);
   }
 
 
