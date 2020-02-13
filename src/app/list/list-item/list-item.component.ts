@@ -52,9 +52,6 @@ export class ListItemComponent implements OnInit {
 
   }
 
-// NEED TO REPLACE ORIGINAL ITEM IN DOM, CURRENTLY DISPLAYING 2
-// NEED TO WRITE 'PUT' ROUTE
-
   onSubmitItem() {
 
     if (this.form.invalid) {return; }

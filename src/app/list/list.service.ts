@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Item } from './item.model';
+import 'rxjs/operators';
 // import { Subject } from 'rxjs';
 // import { environment } from '../../environments/environment';
 
@@ -54,14 +55,20 @@ export class ListService {
       items.map((item, index) => {
         if (item.id === changedItem.id) {
           items.splice(index, 1, changedItem);
-          return this.http.put<Item[]>('http://localhost:4000/', items).subscribe(res => {
-            this.items = res;
+          // this.http.put<Item[]>('http://localhost:4000/', items).subscribe(res => {
+          //   this.items = res;
+          //   console.log(this.items);
+          // });
+          const promise = this.http.put<Item[]>('http://localhost:4000/', items).toPromise();
+          promise.then(data => {
+            this.items = data;
             console.log(this.items);
+            return this.items;
           });
         }
       });
     });
-    console.log(this.items);
+    // console.log(this.items);
   }
 
 
